@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.afollestad:drag-select-recyclerview:2.4.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/79a75928e84096562a4ce57e1751129a/jetified-drag-select-recyclerview-2.4.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/79a75928e84096562a4ce57e1751129a/jetified-drag-select-recyclerview-2.4.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.afollestad/drag-select-recyclerview/2.4.0/fd4d69093130dbc0ed7147910e842df4014bd2e/drag-select-recyclerview-2.4.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.afollestad/drag-select-recyclerview/2.4.0/23bc9cc4f2a07e079ba2b71d7082c9f174cef4d3/drag-select-recyclerview-2.4.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
