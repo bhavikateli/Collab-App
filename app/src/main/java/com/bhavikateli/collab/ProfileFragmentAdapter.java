@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,8 +16,6 @@ import com.parse.ParseFile;
 import java.util.List;
 
 public class ProfileFragmentAdapter extends RecyclerView.Adapter<ProfileFragmentAdapter.ViewHolder> {
-    private ImageView ivUserImage;
-
 
     private Context context;
     private List<Post> posts;
@@ -38,7 +37,6 @@ public class ProfileFragmentAdapter extends RecyclerView.Adapter<ProfileFragment
         final Post post = posts.get(position);
         holder.bind(post);
 
-
     }
 
     @Override
@@ -47,19 +45,26 @@ public class ProfileFragmentAdapter extends RecyclerView.Adapter<ProfileFragment
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
+        private ImageView ivUserImage;
+        private TextView tvPostDescriptionProfile;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             ivUserImage = itemView.findViewById(R.id.ivUserImage);
+            tvPostDescriptionProfile = itemView.findViewById(R.id.tvPostDescriptionProfile);
         }
 
         public void bind(Post post) {
             ParseFile image = post.getImage();
+
+            tvPostDescriptionProfile.setText(post.getDescription());
 
             if(image != null){
                 Glide.with(context).load(image.getUrl()).into(ivUserImage);
             }
         }
     }
+
 }

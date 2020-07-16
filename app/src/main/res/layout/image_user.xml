@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content"
+    android:padding="5dp">
 
     <ImageView
         android:id="@+id/ivUserImage"
-        android:layout_width="190dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="12dp"
-        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <TextView
+        android:id="@+id/tvPostDescriptionProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivUserImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:textSize="14sp"
+        tools:text="this is my description of picture" />
+
 </RelativeLayout>
+<!--   android:adjustViewBounds="true"-->
+<!--    android:scaleType="centerCrop"-->
