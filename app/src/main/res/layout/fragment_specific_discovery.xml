@@ -11,8 +11,11 @@
         android:id="@+id/rvSpecificDiscovery"
         android:layout_width="387dp"
         android:layout_height="632dp"
+        android:layout_below="@+id/tvSpecific"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="-3dp" />
 
     <TextView
         android:id="@+id/tvSpecific"

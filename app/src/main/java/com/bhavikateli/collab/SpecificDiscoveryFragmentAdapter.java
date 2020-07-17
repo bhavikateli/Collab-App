@@ -1,21 +1,36 @@
 package com.bhavikateli.collab;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bhavikateli.collab.fragments.SubTopicAdapter;
+import com.bumptech.glide.Glide;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<SpecificDiscoveryFragmentAdapter.ViewHolder> {
 
+    public static final String TAG = "SpecificDiscoveryAdapte";
     Context context;
     List<ParseUser> creatorUsers;
+    List<Post> creatorPosts = new ArrayList<>();
+    ParseUser user;
+    SubTopicAdapter adapter;
 
     public SpecificDiscoveryFragmentAdapter(Context context, List<ParseUser> creatorUsers) {
         this.context = context;
@@ -31,7 +46,8 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        user = creatorUsers.get(position);
+        holder.bind(user);
     }
 
     @Override
@@ -40,12 +56,66 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-
+        ImageView ivProfileImageSpecificDiscovery;
+        TextView tvUsernameSpecificDiscovery;
+        TextView tvCreatorDescriptionSpecificDiscovery;
+        RecyclerView rvCreatorPostsSpecificDiscovery;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            ivProfileImageSpecificDiscovery = itemView.findViewById(R.id.ivProfileImageSpecificDiscovery);
+            tvUsernameSpecificDiscovery = itemView.findViewById(R.id.tvUsernameSpecificDiscovery);
+            tvCreatorDescriptionSpecificDiscovery = itemView.findViewById(R.id.tvCreatorDescriptionSpecificDiscovery);
+            rvCreatorPostsSpecificDiscovery = itemView.findViewById(R.id.rvCreatorPostsSpecificDiscovery);
         }
 
-    }
+        public void bind(ParseUser user) {
 
+            ParseFile profileImage = user.getParseFile("profilePicture");;
+            Log.i("SpecificDiscoveryAdapte", "pic url: " + profileImage.getUrl() );
+            Glide.with(context)
+                    .load(profileImage.getUrl())
+                    .into(ivProfileImageSpecificDiscovery);
+
+            tvUsernameSpecificDiscovery.setText(user.getUsername());
+
+            tvCreatorDescriptionSpecificDiscovery.setText(user.get("profileDescription").toString());
+
+
+            adapter = new SubTopicAdapter(context, creatorPosts);
+
+            rvCreatorPostsSpecificDiscovery.setAdapter(adapter);
+
+            LinearLayoutManager manager = new LinearLayoutManager(context);
+            rvCreatorPostsSpecificDiscovery.setLayoutManager(manager);
+
+
+
+            queryPosts();
+
+
+            }
+        }
+    private void queryPosts() {
+        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+        query.include(Post.KEY_USER);
+        query.whereEqualTo(Post.KEY_USER, user);
+        query.setLimit(100);
+        query.addDescendingOrder(Post.KEY_CREATED_AT);
+        query.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> posts, ParseException e) {
+                if(e != null){
+                    //toast the output of e
+                    Log.e(TAG, "cant get objects", e);
+                    return;
+                }
+                for(Post post: posts){
+                    Log.i(TAG, "post: " + post.getDescription() + ", user: " + post.getUser().getUsername());
+                }
+               // creatorPosts.addAll(posts);
+               // adapter.notifyDataSetChanged();
+            }
+        });
+    }
 }

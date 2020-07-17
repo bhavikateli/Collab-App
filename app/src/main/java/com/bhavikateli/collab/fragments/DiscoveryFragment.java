@@ -77,6 +77,8 @@ public class DiscoveryFragment extends Fragment {
         adapter = new DiscoveryFragmentAdapter(getContext(), topics);
         rvTopics.setAdapter(adapter);
 
+        selectedArray = new ArrayList<>();
+
         btnSubmitDiscovery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

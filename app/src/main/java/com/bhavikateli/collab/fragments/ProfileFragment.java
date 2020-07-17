@@ -80,8 +80,6 @@ public class ProfileFragment extends Fragment {
                     .into(ivUserProfileImage);
 
 
-
-
         allPosts = new ArrayList<>();
         adapter = new ProfileFragmentAdapter(getContext(), allPosts);
 
@@ -112,6 +110,7 @@ public class ProfileFragment extends Fragment {
         query.include(Post.KEY_USER);
         query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
         query.setLimit(100);
+        query.addDescendingOrder(Post.KEY_CREATED_AT);
         query.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {

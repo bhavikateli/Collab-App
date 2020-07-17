@@ -10,14 +10,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bhavikateli.collab.R;
+import com.bhavikateli.collab.SpecificDiscoveryFragmentAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SpecificDiscoveryFragment extends Fragment {
@@ -25,6 +28,7 @@ public class SpecificDiscoveryFragment extends Fragment {
     public static final String TAG = "SpecificDiscoveryFragme";
     private RecyclerView rvSpecificDiscovery;
     private List<ParseUser> creatorUsers;
+    private SpecificDiscoveryFragmentAdapter adapter;
 
 
     public SpecificDiscoveryFragment() {
@@ -44,6 +48,14 @@ public class SpecificDiscoveryFragment extends Fragment {
 
         rvSpecificDiscovery = view.findViewById(R.id.rvSpecificDiscovery);
 
+        creatorUsers = new ArrayList<>();
+        adapter = new SpecificDiscoveryFragmentAdapter(getContext(), creatorUsers);
+
+        rvSpecificDiscovery.setAdapter(adapter);
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        rvSpecificDiscovery.setLayoutManager(manager);
+
+
         queryUsers();
     }
 
@@ -57,6 +69,8 @@ public class SpecificDiscoveryFragment extends Fragment {
                     Log.i(TAG, "user: " + objects.get(0).getUsername());
                     Log.i(TAG, "user: " + objects.get(1).getUsername());
                     Log.i(TAG, "user: " + objects.get(2).getUsername());
+                    creatorUsers.addAll(objects);
+                    adapter.notifyDataSetChanged();
 
                 } else {
                     Toast.makeText(getContext(),"Query Not Successful",Toast.LENGTH_LONG).show();
