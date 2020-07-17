@@ -10,14 +10,16 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvUserPosts"
-        android:layout_width="match_parent"
-        android:layout_height="619dp"
-        android:layout_below="@+id/ivUserProfileImage"
+        android:layout_width="412dp"
+        android:layout_height="553dp"
+        android:layout_below="@+id/tvProfileDescription"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="-2dp"
-        android:layout_marginEnd="0dp" />
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="-2dp"
+        android:layout_marginBottom="0dp" />
 
     <ImageView
         android:id="@+id/ivUserProfileImage"
@@ -55,8 +57,8 @@
 
     <TextView
         android:id="@+id/tvProfileDescription"
-        android:layout_width="245dp"
-        android:layout_height="47dp"
+        android:layout_width="246dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/btnLogOut"
         android:layout_marginStart="20dp"
         android:layout_marginTop="11dp"

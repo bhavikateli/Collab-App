@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +26,14 @@ public class DiscoveryFragment extends Fragment {
     private RecyclerView rvTopics;
     private DiscoveryFragmentAdapter adapter;
     private GridLayoutManager manager;
+    private Button btnSubmitDiscovery;
+    private ButtonSubmitDiscoveryListener listener;
     List<Topic> topics;
+    List<Topic> selectedArray;
+
+    public interface ButtonSubmitDiscoveryListener {
+        void switchFragment();
+    }
 
     public DiscoveryFragment() {
         // Required empty public constructor
@@ -40,6 +50,7 @@ public class DiscoveryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rvTopics = view.findViewById(R.id.rvTopics);
+        btnSubmitDiscovery = view.findViewById(R.id.btnSubmitDiscovery);
 
         topics = new ArrayList<>();
         manager = new GridLayoutManager(getContext(), 2);
@@ -65,6 +76,28 @@ public class DiscoveryFragment extends Fragment {
 
         adapter = new DiscoveryFragmentAdapter(getContext(), topics);
         rvTopics.setAdapter(adapter);
+
+        btnSubmitDiscovery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(Topic topic: topics){
+                    Boolean selected = topic.getSelected();
+                    if(selected == true){
+                        selectedArray.add(topic);
+                    }
+                }
+
+                //switch to the next fragment and send in selected
+                Fragment fragment = new SpecificDiscoveryFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                //Replace intent with Bundle and put it in the transaction
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.flContainer, fragment);
+                fragmentTransaction.replace(R.id.flContainer,fragment);
+                fragmentTransaction.commit();
+
+            }
+        });
 
 
     }

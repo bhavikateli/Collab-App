@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import com.bhavikateli.collab.fragments.ComposeFragment;
 import com.bhavikateli.collab.fragments.DiscoveryFragment;
 import com.bhavikateli.collab.fragments.ProfileFragment;
+import com.bhavikateli.collab.fragments.SpecificDiscoveryFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
         });
         //set default action
         bottomNavigationView.setSelectedItemId(R.id.action_discovery);
+    }
+
+    public void switchFragment() {
+        Fragment fragment;
+        fragment = new SpecificDiscoveryFragment();
+        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+
     }
 
     @Override
