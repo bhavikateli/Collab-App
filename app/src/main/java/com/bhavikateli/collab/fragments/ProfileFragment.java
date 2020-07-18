@@ -45,7 +45,6 @@ public class ProfileFragment extends Fragment {
     ParseUser user;
 
 
-
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -73,11 +72,12 @@ public class ProfileFragment extends Fragment {
         //set its text
         tvUserUsername.setText(user.getUsername());
         tvProfileDescription.setText(user.get("profileDescription").toString());
-        ParseFile profileImage = user.getParseFile("profilePicture");;
-        Log.i(TAG, "pic url: " + profileImage.getUrl() );
-            Glide.with(this)
-                    .load(profileImage.getUrl())
-                    .into(ivUserProfileImage);
+        ParseFile profileImage = user.getParseFile("profilePicture");
+        ;
+        Log.i(TAG, "pic url: " + profileImage.getUrl());
+        Glide.with(this)
+                .load(profileImage.getUrl())
+                .into(ivUserProfileImage);
 
 
         allPosts = new ArrayList<>();
@@ -88,7 +88,7 @@ public class ProfileFragment extends Fragment {
         manager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
 
         rvUserPosts.setLayoutManager(manager);
-        
+
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,12 +114,12 @@ public class ProfileFragment extends Fragment {
         query.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {
-                if(e != null){
+                if (e != null) {
                     //toast the output of e
                     Log.e(TAG, "cant get objects", e);
                     return;
                 }
-                for(Post post: posts){
+                for (Post post : posts) {
                     Log.i(TAG, "post: " + post.getDescription() + ", user: " + post.getUser().getUsername());
                 }
                 allPosts.addAll(posts);

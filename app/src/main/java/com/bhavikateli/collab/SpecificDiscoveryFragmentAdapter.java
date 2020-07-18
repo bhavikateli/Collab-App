@@ -26,11 +26,12 @@ import java.util.List;
 public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<SpecificDiscoveryFragmentAdapter.ViewHolder> {
 
     public static final String TAG = "SpecificDiscoveryAdapte";
-    Context context;
-    List<ParseUser> creatorUsers;
+    private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     List<Post> creatorPosts = new ArrayList<>();
-    ParseUser user;
+    List<ParseUser> creatorUsers;
     SubTopicAdapter adapter;
+    Context context;
+    ParseUser user;
 
     public SpecificDiscoveryFragmentAdapter(Context context, List<ParseUser> creatorUsers) {
         this.context = context;
@@ -72,6 +73,8 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
         public void bind(ParseUser user) {
 
             ParseFile profileImage = user.getParseFile("profilePicture");;
+            //creatorPosts.clear();
+
             Log.i("SpecificDiscoveryAdapte", "pic url: " + profileImage.getUrl() );
             Glide.with(context)
                     .load(profileImage.getUrl())
@@ -81,16 +84,17 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
 
             tvCreatorDescriptionSpecificDiscovery.setText(user.get("profileDescription").toString());
 
+            creatorPosts.clear();
 
             adapter = new SubTopicAdapter(context, creatorPosts);
 
             rvCreatorPostsSpecificDiscovery.setAdapter(adapter);
 
-            LinearLayoutManager manager = new LinearLayoutManager(context);
+            LinearLayoutManager manager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+
             rvCreatorPostsSpecificDiscovery.setLayoutManager(manager);
 
-
-
+            rvCreatorPostsSpecificDiscovery.setRecycledViewPool(viewPool);
             queryPosts();
 
 
@@ -113,8 +117,8 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
                 for(Post post: posts){
                     Log.i(TAG, "post: " + post.getDescription() + ", user: " + post.getUser().getUsername());
                 }
-               // creatorPosts.addAll(posts);
-               // adapter.notifyDataSetChanged();
+               creatorPosts.addAll(posts);
+               adapter.notifyDataSetChanged();
             }
         });
     }

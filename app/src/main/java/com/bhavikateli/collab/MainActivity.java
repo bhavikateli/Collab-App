@@ -1,5 +1,6 @@
 package com.bhavikateli.collab;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,16 +41,13 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (menuItem.getItemId()) {
                     case R.id.action_discovery:
-                        Toast.makeText(MainActivity.this, "discovery!", Toast.LENGTH_SHORT).show();
                         fragment = new DiscoveryFragment();
                         break;
                     case R.id.action_compose:
-                        Toast.makeText(MainActivity.this, "compose!", Toast.LENGTH_SHORT).show();
                         fragment = new ComposeFragment();
                         break;
                     case R.id.action_profile:
                     default:
-                        Toast.makeText(MainActivity.this, "profile!", Toast.LENGTH_SHORT).show();
                         fragment = new ProfileFragment();
                         break;
                 }
@@ -73,5 +71,17 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId() == R.id.action_chat){
+            Toast.makeText(this, "chat clicked", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(MainActivity.this, ChatActivity.class);
+            startActivity(i);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
