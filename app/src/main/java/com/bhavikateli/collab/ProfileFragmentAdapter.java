@@ -20,7 +20,7 @@ public class ProfileFragmentAdapter extends RecyclerView.Adapter<ProfileFragment
     private Context context;
     private List<Post> posts;
 
-    public ProfileFragmentAdapter(Context context,List<Post> posts ){
+    public ProfileFragmentAdapter(Context context, List<Post> posts) {
         this.context = context;
         this.posts = posts;
     }
@@ -44,7 +44,7 @@ public class ProfileFragmentAdapter extends RecyclerView.Adapter<ProfileFragment
         return posts.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView ivUserImage;
         private TextView tvPostDescriptionProfile;
 
@@ -61,7 +61,7 @@ public class ProfileFragmentAdapter extends RecyclerView.Adapter<ProfileFragment
 
             tvPostDescriptionProfile.setText(post.getDescription());
 
-            if(image != null){
+            if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivUserImage);
             }
         }

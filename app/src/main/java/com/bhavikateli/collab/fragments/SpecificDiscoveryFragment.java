@@ -65,7 +65,7 @@ public class SpecificDiscoveryFragment extends Fragment {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
                 if (e == null) {
-                    Toast.makeText(getContext(),"Query Success",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Query Success", Toast.LENGTH_LONG).show();
                     Log.i(TAG, "user: " + objects.get(0).getUsername());
                     Log.i(TAG, "user: " + objects.get(1).getUsername());
                     Log.i(TAG, "user: " + objects.get(2).getUsername());
@@ -73,7 +73,7 @@ public class SpecificDiscoveryFragment extends Fragment {
                     adapter.notifyDataSetChanged();
 
                 } else {
-                    Toast.makeText(getContext(),"Query Not Successful",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Query Not Successful", Toast.LENGTH_LONG).show();
                 }
             }
         });

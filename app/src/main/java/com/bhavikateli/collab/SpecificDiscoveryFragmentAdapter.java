@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bhavikateli.collab.fragments.SubTopicAdapter;
 import com.bumptech.glide.Glide;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -26,12 +25,12 @@ import java.util.List;
 public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<SpecificDiscoveryFragmentAdapter.ViewHolder> {
 
     public static final String TAG = "SpecificDiscoveryAdapte";
-    private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     List<Post> creatorPosts = new ArrayList<>();
     List<ParseUser> creatorUsers;
     SubTopicAdapter adapter;
     Context context;
     ParseUser user;
+    private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
 
     public SpecificDiscoveryFragmentAdapter(Context context, List<ParseUser> creatorUsers) {
         this.context = context;
@@ -56,7 +55,30 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
         return creatorUsers.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    private void queryPosts() {
+        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+        query.include(Post.KEY_USER);
+        query.whereEqualTo(Post.KEY_USER, user);
+        query.setLimit(100);
+        query.addDescendingOrder(Post.KEY_CREATED_AT);
+        query.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> posts, ParseException e) {
+                if (e != null) {
+                    //toast the output of e
+                    Log.e(TAG, "cant get objects", e);
+                    return;
+                }
+                for (Post post : posts) {
+                    Log.i(TAG, "post: " + post.getDescription() + ", user: " + post.getUser().getUsername());
+                }
+                creatorPosts.addAll(posts);
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProfileImageSpecificDiscovery;
         TextView tvUsernameSpecificDiscovery;
         TextView tvCreatorDescriptionSpecificDiscovery;
@@ -72,10 +94,11 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
 
         public void bind(ParseUser user) {
 
-            ParseFile profileImage = user.getParseFile("profilePicture");;
+            ParseFile profileImage = user.getParseFile("profilePicture");
+            ;
             //creatorPosts.clear();
 
-            Log.i("SpecificDiscoveryAdapte", "pic url: " + profileImage.getUrl() );
+            Log.i("SpecificDiscoveryAdapte", "pic url: " + profileImage.getUrl());
             Glide.with(context)
                     .load(profileImage.getUrl())
                     .into(ivProfileImageSpecificDiscovery);
@@ -98,28 +121,6 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
             queryPosts();
 
 
-            }
         }
-    private void queryPosts() {
-        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-        query.include(Post.KEY_USER);
-        query.whereEqualTo(Post.KEY_USER, user);
-        query.setLimit(100);
-        query.addDescendingOrder(Post.KEY_CREATED_AT);
-        query.findInBackground(new FindCallback<Post>() {
-            @Override
-            public void done(List<Post> posts, ParseException e) {
-                if(e != null){
-                    //toast the output of e
-                    Log.e(TAG, "cant get objects", e);
-                    return;
-                }
-                for(Post post: posts){
-                    Log.i(TAG, "post: " + post.getDescription() + ", user: " + post.getUser().getUsername());
-                }
-               creatorPosts.addAll(posts);
-               adapter.notifyDataSetChanged();
-            }
-        });
     }
 }

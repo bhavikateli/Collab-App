@@ -3,7 +3,9 @@ package com.bhavikateli.collab.fragments;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ImageDecoder;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -24,24 +26,28 @@ import androidx.fragment.app.Fragment;
 import com.bhavikateli.collab.Post;
 import com.bhavikateli.collab.R;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
+import java.io.IOException;
 
 import static android.app.Activity.RESULT_OK;
 
 
 public class ComposeFragment extends Fragment {
 
-    public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 22;
+    public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
+    public final static int PICK_PHOTO_CODE = 1088;
     public static final String TAG = "ComposeFragment";
     public String photoFileName = "photo.jpg";
     private EditText etDescription;
     private Button btnCaptureImage;
+    private Button btnGalleryPicture;
     private ImageView ivPostImage;
     private Button btnSubmit;
-    File photoFile;
+    private File photoFile;
 
     public ComposeFragment() {
         // Required empty public constructor
@@ -62,6 +68,7 @@ public class ComposeFragment extends Fragment {
         btnCaptureImage = view.findViewById(R.id.btnCaptureImage);
         ivPostImage = view.findViewById(R.id.ivPostImage);
         btnSubmit = view.findViewById(R.id.btnSubmit);
+        btnGalleryPicture = view.findViewById(R.id.btnGalleryPicture);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,28 +78,61 @@ public class ComposeFragment extends Fragment {
                     Toast.makeText(getContext(), "description cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                /*
                 if(photoFile == null || ivPostImage.getDrawable() == null){
                     Toast.makeText(getContext(), "there is no image!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                 */
                 ParseUser user = ParseUser.getCurrentUser();
                 savePost(description, user, photoFile);
             }
         });
 
-        /*
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 launchCamera();
+                }
+            });
+        btnGalleryPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onPickPhoto(view);
             }
         });
-         */
 
+        }
+
+    private void onPickPhoto(View view) {
+        // Create intent for picking a photo from the gallery
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+        // So as long as the result is not null, it's safe to use the intent.
+        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+            // Bring up gallery to select a photo
+            startActivityForResult(intent, PICK_PHOTO_CODE);
+        }
     }
+
+    public Bitmap loadFromUri(Uri photoUri) {
+        Bitmap image = null;
+        try {
+            // check version of Android on device
+            if(Build.VERSION.SDK_INT > 27){
+                // on newer versions of Android, use the new decodeBitmap method
+                ImageDecoder.Source source = ImageDecoder.createSource(getContext().getContentResolver(), photoUri);
+                image = ImageDecoder.decodeBitmap(source);
+            } else {
+                // support older versions of Android by using getBitmap
+                image = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), photoUri);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+
     private void launchCamera() {
         // create Intent to take a picture and return control to the calling application
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -110,8 +150,24 @@ public class ComposeFragment extends Fragment {
         if (intent.resolveActivity(getContext().getPackageManager()) != null) {
             // Start the image capture intent to take photo
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+            }
         }
-    }
+
+    // Returns the File for a photo stored on disk given the fileName
+    public File getPhotoFileUri(String fileName) {
+        // Get safe storage directory for photos
+        // Use `getExternalFilesDir` on Context to access package-specific directories.
+        // This way, we don't need to request external read/write runtime permissions.
+        File mediaStorageDir = new File(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
+
+        // Create the storage directory if it does not exist
+        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
+            Log.d(TAG, "failed to create directory");
+            }
+
+        // Return the file target for the photo based on filename
+        return new File(mediaStorageDir.getPath() + File.separator + fileName);
+        }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -127,44 +183,36 @@ public class ComposeFragment extends Fragment {
                 Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
         }
-    }
 
-    // Returns the File for a photo stored on disk given the fileName
-    public File getPhotoFileUri(String fileName) {
-        // Get safe storage directory for photos
-        // Use `getExternalFilesDir` on Context to access package-specific directories.
-        // This way, we don't need to request external read/write runtime permissions.
-        File mediaStorageDir = new File(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
+        else if ((data != null) && requestCode == PICK_PHOTO_CODE) {
+            Uri photoUri = data.getData();
 
-        // Create the storage directory if it does not exist
-        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
-            Log.d(TAG, "failed to create directory");
+            // Load the image located at photoUri into selectedImage
+            Bitmap selectedImage = loadFromUri(photoUri);
+
+            // Load the selected image into a preview
+            ivPostImage.setImageBitmap(selectedImage);
         }
-
-        // Return the file target for the photo based on filename
-        return new File(mediaStorageDir.getPath() + File.separator + fileName);
-    }
-
-
+        }
 
     private void savePost(String description, ParseUser user, File photoFile) {
         Post post = new Post();
-//        post.setImage(new ParseFile(photoFile));
         post.setDescription(description);
+        post.setImage(new ParseFile(photoFile));
         post.setUser(user);
 
         post.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                if(e != null){
+                if (e != null) {
                     Log.e(TAG, "error saving post", e);
                     Toast.makeText(getContext(), "error saving post", Toast.LENGTH_SHORT).show();
-                }
+                    }
                 Log.i(TAG, "post save succesful");
                 etDescription.setText("");
                 ivPostImage.setImageResource(0);
-            }
-        });
+                }
+            });
 
-    }
+        }
 }

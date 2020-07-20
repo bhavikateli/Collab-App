@@ -34,6 +34,7 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
 
     public static final String TAG = "ProfileFragment";
+    ParseUser user;
     private ImageView ivUserProfileImage;
     private TextView tvUserUsername;
     private RecyclerView rvUserPosts;
@@ -42,7 +43,6 @@ public class ProfileFragment extends Fragment {
     private StaggeredGridLayoutManager manager;
     private Button btnLogOut;
     private TextView tvProfileDescription;
-    ParseUser user;
 
 
     public ProfileFragment() {

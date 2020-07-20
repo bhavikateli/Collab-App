@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bhavikateli.collab.fragments.Topic;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
@@ -22,7 +21,7 @@ public class DiscoveryFragmentAdapter extends RecyclerView.Adapter<DiscoveryFrag
     Context context;
     List<Topic> topics;
     ImageView ivTopic;
-    RequestOptions requestOptions ;
+    RequestOptions requestOptions;
 
     public DiscoveryFragmentAdapter(Context context, List<Topic> topics) {
         this.context = context;
@@ -69,11 +68,11 @@ public class DiscoveryFragmentAdapter extends RecyclerView.Adapter<DiscoveryFrag
                 public void onClick(View view) {
 
                     Boolean selected = topic.getSelected();
-                    Log.i(TAG,  "selectedState before: " + topic.getSelected());
+                    Log.i(TAG, "selectedState before: " + topic.getSelected());
                     selected = !selected;
                     topic.setSelected(selected);
                     Log.i(TAG, "selectedState after: " + topic.getSelected());
-                    if(selected == true){
+                    if (selected == true) {
                         //ivTopic.setImageDrawable(context.getResources().getDrawable(R.drawable.bhavi));
                         //Glide.with(context).load(R.drawable.bhavi).apply(requestOptions).into(ivTopic);
                     }

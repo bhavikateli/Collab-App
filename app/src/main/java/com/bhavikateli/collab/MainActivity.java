@@ -21,9 +21,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
-    private BottomNavigationView bottomNavigationView;
     final FragmentManager fragmentManager = getSupportFragmentManager();
     Toolbar toolbar;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if(item.getItemId() == R.id.action_chat){
+        if (item.getItemId() == R.id.action_chat) {
             Toast.makeText(this, "chat clicked", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(MainActivity.this, ChatActivity.class);
             startActivity(i);

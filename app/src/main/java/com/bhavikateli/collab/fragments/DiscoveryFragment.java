@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bhavikateli.collab.DiscoveryFragmentAdapter;
 import com.bhavikateli.collab.R;
+import com.bhavikateli.collab.Topic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,17 +24,13 @@ import java.util.List;
 
 public class DiscoveryFragment extends Fragment {
 
+    List<Topic> topics;
+    List<Topic> selectedArray;
     private RecyclerView rvTopics;
     private DiscoveryFragmentAdapter adapter;
     private GridLayoutManager manager;
     private Button btnSubmitDiscovery;
     private ButtonSubmitDiscoveryListener listener;
-    List<Topic> topics;
-    List<Topic> selectedArray;
-
-    public interface ButtonSubmitDiscoveryListener {
-        void switchFragment();
-    }
 
     public DiscoveryFragment() {
         // Required empty public constructor
@@ -82,9 +79,9 @@ public class DiscoveryFragment extends Fragment {
         btnSubmitDiscovery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for(Topic topic: topics){
+                for (Topic topic : topics) {
                     Boolean selected = topic.getSelected();
-                    if(selected == true){
+                    if (selected == true) {
                         selectedArray.add(topic);
                     }
                 }
@@ -95,12 +92,16 @@ public class DiscoveryFragment extends Fragment {
                 //Replace intent with Bundle and put it in the transaction
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.add(R.id.flContainer, fragment);
-                fragmentTransaction.replace(R.id.flContainer,fragment);
+                fragmentTransaction.replace(R.id.flContainer, fragment);
                 fragmentTransaction.commit();
 
             }
         });
 
 
+    }
+
+    public interface ButtonSubmitDiscoveryListener {
+        void switchFragment();
     }
 }

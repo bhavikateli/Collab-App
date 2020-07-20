@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,7 +10,7 @@
         android:id="@+id/flContainer"
         android:layout_width="match_parent"
         android:layout_height="622dp"
-        android:layout_above="@id/bottomNavigationView" >
+        android:layout_above="@id/bottomNavigationView">
 
     </FrameLayout>
 
@@ -48,8 +47,6 @@
             android:layout_marginTop="4dp"
             app:srcCompat="@drawable/collab" />
     </androidx.appcompat.widget.Toolbar>
-
-
 
 
 </RelativeLayout>

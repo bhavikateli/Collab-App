@@ -1,4 +1,4 @@
-package com.bhavikateli.collab.fragments;
+package com.bhavikateli.collab;
 
 public class Topic {
 
@@ -10,15 +10,15 @@ public class Topic {
         this.selected = selected;
     }
 
-    public void setSelected(Boolean selectedState){
-        selected = selectedState;
-    }
-
-    public Boolean getSelected(){
+    public Boolean getSelected() {
         return selected;
     }
 
-    public int getImg(){
+    public void setSelected(Boolean selectedState) {
+        selected = selectedState;
+    }
+
+    public int getImg() {
         return img;
     }
 

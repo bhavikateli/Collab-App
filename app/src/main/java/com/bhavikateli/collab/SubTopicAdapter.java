@@ -1,4 +1,4 @@
-package com.bhavikateli.collab.fragments;
+package com.bhavikateli.collab;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bhavikateli.collab.Post;
-import com.bhavikateli.collab.R;
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
 
@@ -44,7 +42,7 @@ public class SubTopicAdapter extends RecyclerView.Adapter<SubTopicAdapter.ViewHo
         return creatorPosts.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView ivSubtopicImage;
 
 

@@ -29,14 +29,22 @@ public class ChatActivity extends AppCompatActivity {
     static final String TAG = "ChatActivity";
     static final String USER_ID_KEY = "userId";
     static final String BODY_KEY = "body";
+    static final int POLL_INTERVAL = 1000; // milliseconds
     RecyclerView rvChat;
     ArrayList<Message> mMessages;
     ChatAdapter mAdapter;
     // Keep track of initial load to scroll to the bottom of the ListView
     boolean mFirstLoad;
-
     EditText etMessage;
     Button btSend;
+    Handler myHandler = new android.os.Handler();
+    Runnable mRefreshMessagesRunnable = new Runnable() {
+        @Override
+        public void run() {
+            refreshMessages();
+            myHandler.postDelayed(this, POLL_INTERVAL);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,16 +107,6 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
     }
-
-    static final int POLL_INTERVAL = 1000; // milliseconds
-    Handler myHandler = new android.os.Handler();
-    Runnable mRefreshMessagesRunnable = new Runnable() {
-        @Override
-        public void run() {
-            refreshMessages();
-            myHandler.postDelayed(this, POLL_INTERVAL);
-        }
-    };
 
     private void refreshMessages() {
         // Construct query to execute
