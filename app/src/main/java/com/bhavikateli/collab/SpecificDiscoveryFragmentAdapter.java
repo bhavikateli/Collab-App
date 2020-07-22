@@ -1,7 +1,6 @@
 package com.bhavikateli.collab;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.parse.FindCallback;
-import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -30,11 +26,13 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
     SubTopicAdapter adapter;
     Context context;
     ParseUser user;
+    List<UserPosts> allCreatorPosts;
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
 
-    public SpecificDiscoveryFragmentAdapter(Context context, List<ParseUser> creatorUsers) {
+    public SpecificDiscoveryFragmentAdapter(Context context, List<ParseUser> creatorUsers, List<UserPosts> allCreatorPosts) {
         this.context = context;
         this.creatorUsers = creatorUsers;
+        this.allCreatorPosts = allCreatorPosts;
     }
 
     @NonNull
@@ -67,7 +65,7 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
     public int getItemCount() {
         return creatorUsers.size();
     }
-
+/*
     private void queryPosts() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
@@ -85,11 +83,14 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
                 for (Post post : posts) {
                     Log.i(TAG, "post: " + post.getDescription() + ", user: " + post.getUser().getUsername());
                 }
+                adapter.clear();
                 creatorPosts.addAll(posts);
                 adapter.notifyDataSetChanged();
             }
         });
     }
+
+ */
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProfileImageSpecificDiscovery;
@@ -107,13 +108,14 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
 
         public void bind(ParseUser user) {
 
+            for(UserPosts userPosts: allCreatorPosts){
+                if(userPosts.user == user){
+                    creatorPosts = userPosts.creatorPosts;
+                }
+            }
+
             ParseFile profileImage = user.getParseFile("profilePicture");
 
-            if (!creatorPosts.isEmpty()) {
-                creatorPosts.clear(); //The list for update recycle view
-                adapter.notifyDataSetChanged();
-            }
-            Log.i("SpecificDiscoveryAdapte", "pic url: " + profileImage.getUrl());
             Glide.with(context)
                     .load(profileImage.getUrl())
                     .into(ivProfileImageSpecificDiscovery);
@@ -122,9 +124,8 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
 
             tvCreatorDescriptionSpecificDiscovery.setText(user.get("profileDescription").toString());
 
-            creatorPosts.clear();
-
             adapter = new SubTopicAdapter(context, creatorPosts);
+
 
             rvCreatorPostsSpecificDiscovery.setAdapter(adapter);
 
@@ -133,7 +134,6 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
             rvCreatorPostsSpecificDiscovery.setLayoutManager(manager);
 
             rvCreatorPostsSpecificDiscovery.setRecycledViewPool(viewPool);
-            queryPosts();
 
         }
     }

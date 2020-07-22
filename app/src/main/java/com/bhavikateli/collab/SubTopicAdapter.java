@@ -1,6 +1,7 @@
 package com.bhavikateli.collab;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,11 @@ public class SubTopicAdapter extends RecyclerView.Adapter<SubTopicAdapter.ViewHo
         return creatorPosts.size();
     }
 
+    public void clear() {
+        creatorPosts.clear();
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView ivSubtopicImage;
 
@@ -52,6 +58,7 @@ public class SubTopicAdapter extends RecyclerView.Adapter<SubTopicAdapter.ViewHo
         }
 
         public void bind(Post post) {
+            Log.i("SubtopicAdapter", "user of post: " + post.getUser().getUsername());
             ParseFile image = post.getImage();
             Glide.with(context).load(image.getUrl()).into(ivSubtopicImage);
 

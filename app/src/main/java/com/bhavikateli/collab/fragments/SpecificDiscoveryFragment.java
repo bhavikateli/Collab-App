@@ -13,8 +13,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bhavikateli.collab.Post;
 import com.bhavikateli.collab.R;
 import com.bhavikateli.collab.SpecificDiscoveryFragmentAdapter;
+import com.bhavikateli.collab.UserPosts;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -28,8 +30,9 @@ public class SpecificDiscoveryFragment extends Fragment {
     public static final String TAG = "SpecificDiscoveryFragme";
     private RecyclerView rvSpecificDiscovery;
     private List<ParseUser> creatorUsers;
+    List<Post> creatorPosts = new ArrayList<>();
     private SpecificDiscoveryFragmentAdapter adapter;
-
+    List<UserPosts> allCreatorPosts = new ArrayList<>();
 
     public SpecificDiscoveryFragment() {
         // Required empty public constructor
@@ -49,7 +52,7 @@ public class SpecificDiscoveryFragment extends Fragment {
         rvSpecificDiscovery = view.findViewById(R.id.rvSpecificDiscovery);
 
         creatorUsers = new ArrayList<>();
-        adapter = new SpecificDiscoveryFragmentAdapter(getContext(), creatorUsers);
+        adapter = new SpecificDiscoveryFragmentAdapter(getContext(), creatorUsers, allCreatorPosts);
 
         rvSpecificDiscovery.setAdapter(adapter);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -57,6 +60,7 @@ public class SpecificDiscoveryFragment extends Fragment {
 
 
         queryUsers();
+
     }
 
     private void queryUsers() {
@@ -70,6 +74,12 @@ public class SpecificDiscoveryFragment extends Fragment {
                     Log.i(TAG, "user: " + objects.get(1).getUsername());
                     Log.i(TAG, "user: " + objects.get(2).getUsername());
                     creatorUsers.addAll(objects);
+                    adapter.notifyDataSetChanged();
+                    for(ParseUser user: creatorUsers){
+                        UserPosts userPosts = new UserPosts(user);
+                        creatorPosts = userPosts.getCreatorPosts();
+                        allCreatorPosts.add(userPosts);
+                    }
                     adapter.notifyDataSetChanged();
 
                 } else {
