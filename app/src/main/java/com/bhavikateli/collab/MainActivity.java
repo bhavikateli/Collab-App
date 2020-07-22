@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.bhavikateli.collab.fragments.ComposeFragment;
 import com.bhavikateli.collab.fragments.DiscoveryFragment;
+import com.bhavikateli.collab.fragments.HomeFragment;
 import com.bhavikateli.collab.fragments.ProfileFragment;
 import com.bhavikateli.collab.fragments.SpecificDiscoveryFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -45,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_compose:
                         fragment = new ComposeFragment();
+                        fragment.onResume();
+                        break;
+                    case R.id.action_home:
+                        fragment = new HomeFragment();
                         break;
                     case R.id.action_profile:
                     default:

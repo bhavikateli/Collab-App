@@ -15,9 +15,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="-2dp"
-        android:layout_marginBottom="0dp" />
+        android:layout_marginBottom="4dp" />
 
     <ImageView
         android:id="@+id/ivUserProfileImage"
@@ -25,8 +25,8 @@
         android:layout_height="89dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="58dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="50dp"
         tools:srcCompat="@drawable/bhavi" />
 
     <TextView
@@ -34,32 +34,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="61dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivUserProfileImage"
         android:textColor="#100E0E"
+        android:textSize="19sp"
         android:textStyle="bold"
         tools:text="bhavi" />
 
     <Button
         android:id="@+id/btnLogOut"
-        android:layout_width="149dp"
-        android:layout_height="37dp"
+        android:layout_width="110dp"
+        android:layout_height="24dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="18dp"
         android:layout_toEndOf="@+id/tvUserUsername"
-        android:text="Logout" />
+        android:background="#151313"
+        android:text="Logout"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/tvProfileDescription"
-        android:layout_width="246dp"
+        android:layout_width="349dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnLogOut"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="11dp"
-        android:layout_toEndOf="@+id/ivUserProfileImage"
+        android:layout_below="@+id/ivUserProfileImage"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="8dp"
+        android:textColor="#0C0505"
         tools:text="this is bhavi and i wanna be a painter" />
 </RelativeLayout>

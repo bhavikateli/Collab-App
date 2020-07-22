@@ -47,8 +47,21 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         user = creatorUsers.get(position);
+        holder.setIsRecyclable(false);
         holder.bind(user);
     }
+
+    /*
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+     */
 
     @Override
     public int getItemCount() {
@@ -95,9 +108,11 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
         public void bind(ParseUser user) {
 
             ParseFile profileImage = user.getParseFile("profilePicture");
-            ;
-            //creatorPosts.clear();
 
+            if (!creatorPosts.isEmpty()) {
+                creatorPosts.clear(); //The list for update recycle view
+                adapter.notifyDataSetChanged();
+            }
             Log.i("SpecificDiscoveryAdapte", "pic url: " + profileImage.getUrl());
             Glide.with(context)
                     .load(profileImage.getUrl())
@@ -119,7 +134,6 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
 
             rvCreatorPostsSpecificDiscovery.setRecycledViewPool(viewPool);
             queryPosts();
-
 
         }
     }
