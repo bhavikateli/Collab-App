@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.bhavikateli.collab.CommentActivity;
 import com.bhavikateli.collab.LoginActivity;
 import com.bhavikateli.collab.Post;
 import com.bhavikateli.collab.ProfileFragmentAdapter;
@@ -27,6 +28,8 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +49,7 @@ public class ProfileFragment extends Fragment {
     private StaggeredGridLayoutManager manager;
     private Button btnLogOut;
     private TextView tvProfileDescription;
+    private Button btnDiscoveryComment;
 
 
     public ProfileFragment() {
@@ -77,6 +81,16 @@ public class ProfileFragment extends Fragment {
         btnLogOut = view.findViewById(R.id.btnLogOut);
         tvProfileDescription = view.findViewById(R.id.tvProfileDescription);
         rvUserPosts = view.findViewById(R.id.rvUserPosts);
+        btnDiscoveryComment = view.findViewById(R.id.btnDiscoveryComment);
+
+        btnDiscoveryComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), CommentActivity.class);
+                i.putExtra("user", Parcels.wrap(ParseUser.getCurrentUser()));
+                startActivity(i);
+            }
+        });
 
         //set its text
         tvUserUsername.setText(user.getUsername());

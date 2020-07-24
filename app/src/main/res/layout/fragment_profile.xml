@@ -34,8 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="-11dp"
+        android:layout_marginTop="63dp"
         android:layout_toEndOf="@+id/ivUserProfileImage"
         android:textColor="#100E0E"
         android:textSize="19sp"
@@ -66,4 +66,17 @@
         android:layout_marginTop="8dp"
         android:textColor="#0C0505"
         tools:text="this is bhavi and i wanna be a painter" />
+
+    <Button
+        android:id="@+id/btnDiscoveryComment"
+        android:layout_width="114dp"
+        android:layout_height="14dp"
+        android:layout_below="@+id/btnLogOut"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="18dp"
+        android:background="#422577"
+        android:text="Discovery Comments"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp" />
 </RelativeLayout>

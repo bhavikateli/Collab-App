@@ -1,9 +1,11 @@
 package com.bhavikateli.collab;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +101,7 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
         TextView tvUsernameSpecificDiscovery;
         TextView tvCreatorDescriptionSpecificDiscovery;
         RecyclerView rvCreatorPostsSpecificDiscovery;
+        Button btnCommentSpecificDiscovery;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -104,9 +109,10 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
             tvUsernameSpecificDiscovery = itemView.findViewById(R.id.tvUsernameSpecificDiscovery);
             tvCreatorDescriptionSpecificDiscovery = itemView.findViewById(R.id.tvCreatorDescriptionSpecificDiscovery);
             rvCreatorPostsSpecificDiscovery = itemView.findViewById(R.id.rvCreatorPostsSpecificDiscovery);
+            btnCommentSpecificDiscovery = itemView.findViewById(R.id.btnCommentSpecificDiscovery);
         }
 
-        public void bind(ParseUser user) {
+        public void bind(final ParseUser user) {
 
             for(UserPosts userPosts: allCreatorPosts){
                 if(userPosts.user == user){
@@ -123,6 +129,15 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
             tvUsernameSpecificDiscovery.setText(user.getUsername());
 
             tvCreatorDescriptionSpecificDiscovery.setText(user.get("profileDescription").toString());
+
+            btnCommentSpecificDiscovery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, CommentActivity.class);
+                    intent.putExtra("user", Parcels.wrap(user));
+                    context.startActivity(intent);
+                }
+            });
 
             adapter = new SubTopicAdapter(context, creatorPosts);
 

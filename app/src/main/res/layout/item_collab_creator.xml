@@ -53,14 +53,14 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCreatorPostsSpecificDiscovery"
-            android:layout_width="346dp"
-            android:layout_height="227dp"
+            android:layout_width="355dp"
+            android:layout_height="252dp"
             android:layout_below="@+id/view"
             android:layout_alignParentStart="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="17dp"
             android:layout_marginTop="12dp"
-            android:layout_marginBottom="15dp"/>
+            android:layout_marginBottom="15dp" />
 
         <TextView
             android:id="@+id/tvCreatorDescriptionSpecificDiscovery"
@@ -84,6 +84,17 @@
             android:layout_marginEnd="0dp"
             android:background="@android:color/darker_gray"
             android:fillColor="#040303" />
+
+        <Button
+            android:id="@+id/btnCommentSpecificDiscovery"
+            android:layout_width="wrap_content"
+            android:layout_height="31dp"
+            android:layout_below="@+id/rvCreatorPostsSpecificDiscovery"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:text="Comment"
+            android:textSize="10sp" />
 
 
     </RelativeLayout>
