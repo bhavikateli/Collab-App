@@ -6,4 +6,10 @@
     <string name="send">Send</string>
     <string name="profile_me">My Profile Pic</string>
     <string name="profile_other">Other profile pic</string>
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Change the following strings as required -->
+    <string name="back4app_app_id">l1Xryrm3rYlWQttnqwxAQ8nmcxUCYFA0IfTb3Geq</string>
+    <string name="back4app_client_key">mvIIyVBnLj0EnUtJAEGC4xof44xTACaZ2HaBqRF9</string>
 </resources>

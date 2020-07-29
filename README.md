@@ -20,6 +20,8 @@ Original App Design Project - README
 - **Story:** Allows users to show their own artwork and collaborate with other artists.
 - **Market:** Anyone that is interested in expanding their business and growing their social-media through collaborating and working with other artists could enjoy this app. Gives users the ability to find other users with similar interests.
 - **Habit:** Users can post throughout the day many times.
+- **Scope:** Users can eventually eventually pay to collobrate with other artists. 
+
 
 ## Product Spec
 

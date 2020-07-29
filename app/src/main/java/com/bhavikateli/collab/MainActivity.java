@@ -18,6 +18,7 @@ import com.bhavikateli.collab.fragments.HomeFragment;
 import com.bhavikateli.collab.fragments.ProfileFragment;
 import com.bhavikateli.collab.fragments.SpecificDiscoveryFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.ParseInstallation;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -83,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.action_chat) {
             Toast.makeText(this, "chat clicked", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(MainActivity.this, ChatActivity.class);
+            Intent i = new Intent(MainActivity.this, OptionActivity.class);
             startActivity(i);
             return true;
         }

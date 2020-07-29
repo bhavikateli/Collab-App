@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "449760780613",
+    "firebase_url": "https://collab-bhavi.firebaseio.com",
+    "project_id": "collab-bhavi",
+    "storage_bucket": "collab-bhavi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449760780613:android:1b52bc95cf8408d2571e2c",
+        "android_client_info": {
+          "package_name": "com.bhavikateli.collab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449760780613-nqfb8md2khj634en7207q4tcerg56be1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtw7ticVkAmKJuvHExyj1TNnwV9uRBOY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449760780613-nqfb8md2khj634en7207q4tcerg56be1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
