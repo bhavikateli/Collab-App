@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.bhavikateli.collab.CommentActivity;
-import com.bhavikateli.collab.LoginActivity;
+import com.bhavikateli.collab.IntroActivity;
 import com.bhavikateli.collab.Post;
 import com.bhavikateli.collab.ProfileFragmentAdapter;
 import com.bhavikateli.collab.R;
@@ -55,6 +55,12 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public ProfileFragment(ParseUser user) {
+        // Required empty public constructor
+        this.user = user;
+    }
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +78,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        user = ParseUser.getCurrentUser();
+       // user = ParseUser.getCurrentUser();
 
         //find id within resources
         tvUserUsername = view.findViewById(R.id.tvUserUsername);
@@ -96,13 +102,16 @@ public class ProfileFragment extends Fragment {
         tvUserUsername.setText(user.getUsername());
         tvProfileDescription.setText(user.get("profileDescription").toString());
         ParseFile profileImage = user.getParseFile("profilePicture");
-        ;
         Log.i(TAG, "pic url: " + profileImage.getUrl());
         Glide.with(this)
                 .load(profileImage.getUrl())
                 .transform(new RoundedCornersTransformation(100, 20))
                 .into(ivUserProfileImage);
 
+        if(user != ParseUser.getCurrentUser()){
+            btnLogOut.setVisibility(View.INVISIBLE);
+            btnDiscoveryComment.setVisibility(View.INVISIBLE);
+        }
 
         allPosts = new ArrayList<>();
         adapter = new ProfileFragmentAdapter(getContext(), allPosts);
@@ -112,6 +121,7 @@ public class ProfileFragment extends Fragment {
         manager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
 
         rvUserPosts.setLayoutManager(manager);
+
 
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,14 +135,14 @@ public class ProfileFragment extends Fragment {
     }
 
     private void goLoginActivity() {
-        Intent i = new Intent(getContext(), LoginActivity.class);
+        Intent i = new Intent(getContext(), IntroActivity.class);
         startActivity(i);
     }
 
     private void queryPosts() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
-        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+        query.whereEqualTo(Post.KEY_USER, user);
         query.setLimit(100);
         query.addDescendingOrder(Post.KEY_CREATED_AT);
         query.findInBackground(new FindCallback<Post>() {

@@ -22,6 +22,8 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
 public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<SpecificDiscoveryFragmentAdapter.ViewHolder> {
 
     public static final String TAG = "SpecificDiscoveryAdapte";
@@ -126,6 +128,7 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
 
             Glide.with(context)
                     .load(profileImage.getUrl())
+                    .transform(new RoundedCornersTransformation(100, 20))
                     .into(ivProfileImageSpecificDiscovery);
 
             tvUsernameSpecificDiscovery.setText(user.getUsername());

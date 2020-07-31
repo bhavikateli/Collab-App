@@ -29,15 +29,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="37dp"
         android:layout_marginTop="26dp"
-        android:background="#130E0E"
+        android:background="@drawable/rounded_corner_purple"
         android:text="take picture"
         android:textColor="#FFFFFF"
         android:textSize="12sp" />
 
     <ImageView
         android:id="@+id/ivPostImage"
-        android:layout_width="308dp"
-        android:layout_height="365dp"
+        android:layout_width="304dp"
+        android:layout_height="334dp"
         android:layout_below="@+id/btnCaptureImage"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
@@ -53,7 +53,7 @@
         android:layout_marginStart="37dp"
         android:layout_marginTop="26dp"
         android:layout_toEndOf="@+id/btnCaptureImage"
-        android:background="#100C0C"
+        android:background="@drawable/rounded_corner_purple"
         android:text="choose from gallery"
         android:textColor="#FFFFFF"
         android:textSize="12sp" />
@@ -66,7 +66,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="127dp"
         android:layout_marginTop="29dp"
-        android:background="#422577"
+        android:background="@drawable/rounded_corner_black"
         android:text="submit"
         android:textColor="#FFFFFF" />
 
@@ -77,8 +77,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="68dp"
         android:text="Publish to COLLAB"
         android:textAlignment="center"
         android:textColor="#1C1818" />

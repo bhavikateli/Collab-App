@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,10 +10,10 @@
         android:id="@+id/etUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tvIntroWords"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="106dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="38dp"
         android:ems="10"
         android:hint="enter username"
         android:inputType="textPersonName" />
@@ -45,7 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnLogin"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="237dp"
+        android:layout_marginStart="122dp"
+        android:layout_marginTop="49dp"
         android:text="sign up" />
+
 </RelativeLayout>

@@ -16,14 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MapActivity"></activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".MapActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
 
-        <uses-library android:name="org.apache.http.legacy" android:required="false" />
-
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
         <activity android:name=".CommentActivity" /> <!-- make sure within the application tag, otherwise app will crash with XmlResourceParser errors -->
         <provider
@@ -39,7 +41,7 @@
         <activity android:name=".ChatActivity" />
         <activity android:name=".OptionActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

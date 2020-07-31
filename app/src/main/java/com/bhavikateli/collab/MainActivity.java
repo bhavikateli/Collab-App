@@ -16,11 +16,12 @@ import com.bhavikateli.collab.fragments.ComposeFragment;
 import com.bhavikateli.collab.fragments.DiscoveryFragment;
 import com.bhavikateli.collab.fragments.HomeFragment;
 import com.bhavikateli.collab.fragments.ProfileFragment;
-import com.bhavikateli.collab.fragments.SpecificDiscoveryFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
 
+    Fragment fragment;
     public static final String TAG = "MainActivity";
     final FragmentManager fragmentManager = getSupportFragmentManager();
     Toolbar toolbar;
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Fragment fragment;
                 switch (menuItem.getItemId()) {
                     case R.id.action_discovery:
                         fragment = new DiscoveryFragment();
@@ -53,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_profile:
                     default:
-                        fragment = new ProfileFragment();
+                        ParseUser user = ParseUser.getCurrentUser();
+                        fragment = new ProfileFragment(user);
                         break;
                 }
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
@@ -64,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.action_discovery);
     }
 
-    public void switchFragment() {
-        Fragment fragment;
-        fragment = new SpecificDiscoveryFragment();
+    public void switchFragment(String fragmentName, Post post) {
+
+        fragment = new ProfileFragment(post.getUser());
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
 
     }
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.action_chat) {
             Toast.makeText(this, "chat clicked", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(MainActivity.this, OptionActivity.class);
+            Intent i = new Intent(MainActivity.this, ChatActivity.class);
             startActivity(i);
             return true;
         }

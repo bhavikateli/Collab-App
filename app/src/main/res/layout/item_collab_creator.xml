@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="31dp"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="21dp"
+            android:layout_marginStart="13dp"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@+id/ivProfileImageSpecificDiscovery"
             android:text="bhavi"
@@ -40,16 +40,16 @@
 
         <Button
             android:id="@+id/btnFollowSpecificDiscovery"
-            android:layout_width="46dp"
-            android:layout_height="13dp"
-            android:layout_below="@+id/tvUsernameSpecificDiscovery"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="-3dp"
+            android:layout_width="88dp"
+            android:layout_height="14dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="197dp"
+            android:layout_marginTop="31dp"
             android:layout_toEndOf="@+id/ivProfileImageSpecificDiscovery"
-            android:background="#0B0A0A"
+            android:background="@drawable/rounded_corner_black"
             android:text="follow"
             android:textColor="#FFFFFF"
-            android:textSize="8sp" />
+            android:textSize="10sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCreatorPostsSpecificDiscovery"
@@ -70,7 +70,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="6dp"
             android:text="hi, my name is bhavi and i am interested in becoming a painter and to create things "
             android:textColor="#100E0E" />
 
@@ -91,23 +91,26 @@
             android:layout_height="31dp"
             android:layout_below="@+id/rvCreatorPostsSpecificDiscovery"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="7dp"
             android:layout_marginEnd="24dp"
+            android:background="@drawable/rounded_corner_purple"
+            android:layout_marginBottom="7dp"
             android:text="Comment"
+            android:textColor="#FFFFFF"
             android:textSize="10sp" />
 
         <Button
             android:id="@+id/btnLocationSpecificDiscovery"
-            android:layout_width="89dp"
-            android:layout_height="35dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="127dp"
-            android:layout_marginTop="33dp"
-            android:layout_marginEnd="25dp"
-            android:layout_toEndOf="@+id/btnFollowSpecificDiscovery"
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_below="@+id/btnFollowSpecificDiscovery"
+            android:layout_marginStart="197dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/ivProfileImageSpecificDiscovery"
+            android:background="@drawable/rounded_corner_purple"
             android:text="Location"
-            android:textSize="11sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="10sp" />
 
 
     </RelativeLayout>

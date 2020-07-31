@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IntroActivity">
+
+    <TextView
+        android:id="@+id/tvIntroWords2"
+        android:layout_width="304dp"
+        android:layout_height="159dp"
+        android:layout_below="@+id/ivCollabLogoIntro"
+        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="210dp"
+        android:text="Connect with different artists throughout the world now."
+        android:textColor="#130D0D"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/ivCollabLogoIntro"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/collab" />
+
+    <Button
+        android:id="@+id/btnSignUpIntro"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvIntroWords2"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="-63dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/rounded_corner_purple"
+        android:text="create account"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvExsistingAccount"
+        android:layout_width="189dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSignUpIntro"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="193dp"
+        android:text="Have an account already?"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btnLogInIntro"
+        android:layout_width="103dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/btnSignUpIntro"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="191dp"
+        android:layout_marginEnd="62dp"
+        android:layout_toEndOf="@+id/tvExsistingAccount"
+        android:background="@drawable/rounded_corner_black"
+        android:text="Log in"
+        android:textColor="#FFFFFF" />
+
+
+</RelativeLayout>

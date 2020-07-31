@@ -17,8 +17,13 @@ import java.util.List;
 
 public class HomeFragmentAdapter extends RecyclerView.Adapter<HomeFragmentAdapter.ViewHolder> {
 
+    public interface UsernameListener {
+        void switchFragment(String fragmentName, Post post);
+    }
+
     private Context context;
     private List<Post> posts;
+    Post post;
 
     public HomeFragmentAdapter(Context context, List<Post> posts) {
         this.context = context;
@@ -34,7 +39,7 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter<HomeFragmentAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Post post = posts.get(position);
+        post = posts.get(position);
         holder.bind(post);
     }
 
@@ -53,10 +58,17 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter<HomeFragmentAdapte
             ivPostHome = itemView.findViewById(R.id.ivPostHome);
             tvUsernameHome = itemView.findViewById(R.id.tvUsernameHome);
         }
-        public void bind(Post post) {
+        public void bind(final Post post) {
             tvUsernameHome.setText(post.getUser().getUsername());
             ParseFile image = post.getImage();
             Glide.with(context).load(image.getUrl()).into(ivPostHome);
+
+            tvUsernameHome.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((MainActivity)context).switchFragment("UserFragment", post);
+                }
+            });
         }
     }
 }
