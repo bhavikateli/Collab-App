@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -59,7 +58,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+      //  ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
     }
 
@@ -93,6 +92,7 @@ public class ProfileFragment extends Fragment {
         });
 
         //set its text
+        Log.i(TAG, "this is the username: " + user.getUsername());
         tvUserUsername.setText(user.getUsername());
         tvProfileDescription.setText(user.get("profileDescription").toString());
         ParseFile profileImage = user.getParseFile("profilePicture");

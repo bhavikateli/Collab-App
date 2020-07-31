@@ -96,6 +96,19 @@
             android:text="Comment"
             android:textSize="10sp" />
 
+        <Button
+            android:id="@+id/btnLocationSpecificDiscovery"
+            android:layout_width="89dp"
+            android:layout_height="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="127dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="25dp"
+            android:layout_toEndOf="@+id/btnFollowSpecificDiscovery"
+            android:text="Location"
+            android:textSize="11sp" />
+
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

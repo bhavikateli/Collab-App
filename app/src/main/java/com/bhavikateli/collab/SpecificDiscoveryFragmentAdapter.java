@@ -102,6 +102,7 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
         TextView tvCreatorDescriptionSpecificDiscovery;
         RecyclerView rvCreatorPostsSpecificDiscovery;
         Button btnCommentSpecificDiscovery;
+        Button btnLocationSpecificDiscovery;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -110,6 +111,7 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
             tvCreatorDescriptionSpecificDiscovery = itemView.findViewById(R.id.tvCreatorDescriptionSpecificDiscovery);
             rvCreatorPostsSpecificDiscovery = itemView.findViewById(R.id.rvCreatorPostsSpecificDiscovery);
             btnCommentSpecificDiscovery = itemView.findViewById(R.id.btnCommentSpecificDiscovery);
+            btnLocationSpecificDiscovery = itemView.findViewById(R.id.btnLocationSpecificDiscovery);
         }
 
         public void bind(final ParseUser user) {
@@ -129,6 +131,14 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
             tvUsernameSpecificDiscovery.setText(user.getUsername());
 
             tvCreatorDescriptionSpecificDiscovery.setText(user.get("profileDescription").toString());
+
+            btnLocationSpecificDiscovery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, MapActivity.class);
+                    context.startActivity(intent);
+                }
+            });
 
             btnCommentSpecificDiscovery.setOnClickListener(new View.OnClickListener() {
                 @Override

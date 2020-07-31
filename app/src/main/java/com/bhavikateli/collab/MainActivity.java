@@ -18,7 +18,6 @@ import com.bhavikateli.collab.fragments.HomeFragment;
 import com.bhavikateli.collab.fragments.ProfileFragment;
 import com.bhavikateli.collab.fragments.SpecificDiscoveryFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.parse.ParseInstallation;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

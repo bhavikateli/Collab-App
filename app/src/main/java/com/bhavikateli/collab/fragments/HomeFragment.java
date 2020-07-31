@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+       // ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
     }
 
