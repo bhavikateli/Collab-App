@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.bhavikateli.collab.CommentActivity;
+import com.bhavikateli.collab.EditProfileActivity;
 import com.bhavikateli.collab.IntroActivity;
 import com.bhavikateli.collab.Post;
 import com.bhavikateli.collab.ProfileFragmentAdapter;
@@ -49,6 +50,7 @@ public class ProfileFragment extends Fragment {
     private Button btnLogOut;
     private TextView tvProfileDescription;
     private Button btnDiscoveryComment;
+    private  Button btnEditProfile;
 
 
     public ProfileFragment() {
@@ -87,12 +89,21 @@ public class ProfileFragment extends Fragment {
         tvProfileDescription = view.findViewById(R.id.tvProfileDescription);
         rvUserPosts = view.findViewById(R.id.rvUserPosts);
         btnDiscoveryComment = view.findViewById(R.id.btnDiscoveryComment);
+        btnEditProfile = view.findViewById(R.id.btnEditProfile);
 
         btnDiscoveryComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getContext(), CommentActivity.class);
                 i.putExtra("user", Parcels.wrap(ParseUser.getCurrentUser()));
+                startActivity(i);
+            }
+        });
+
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), EditProfileActivity.class);
                 startActivity(i);
             }
         });
