@@ -1,6 +1,7 @@
 package com.bhavikateli.collab.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,21 +63,25 @@ public class DiscoveryFragment extends Fragment {
         rvTopics.setLayoutManager(manager);
 
 
-        topics.add(new Topic(R.drawable.crafting, false));
-        topics.add(new Topic(R.drawable.drama, false));
-        topics.add(new Topic(R.drawable.drawing, false));
-        topics.add(new Topic(R.drawable.fashion, false));
-        topics.add(new Topic(R.drawable.painting, false));
-        topics.add(new Topic(R.drawable.photography, false));
-        topics.add(new Topic(R.drawable.film, false));
-        topics.add(new Topic(R.drawable.graphic, false));
-        topics.add(new Topic(R.drawable.fashiondesign, false));
-        topics.add(new Topic(R.drawable.singing, false));
-        topics.add(new Topic(R.drawable.modeling, false));
-        topics.add(new Topic(R.drawable.makeup, false));
-        topics.add(new Topic(R.drawable.writing, false));
-        topics.add(new Topic(R.drawable.poetry, false));
-        topics.add(new Topic(R.drawable.computermodel, false));
+        Log.i("DiscoveryFragment", "Size of topics before initializing: " + topics.size());
+        topics.add(new Topic(R.drawable.crafting, false, "crafting"));
+        topics.add(new Topic(R.drawable.drama, false, "drama"));
+        topics.add(new Topic(R.drawable.drawing, false, "drawing"));
+        topics.add(new Topic(R.drawable.fashion, false, "fashion"));
+        topics.add(new Topic(R.drawable.painting, false, "painting"));
+        topics.add(new Topic(R.drawable.photography, false, "photo"));
+        topics.add(new Topic(R.drawable.film, false, "film"));
+        topics.add(new Topic(R.drawable.graphic, false, "graphic"));
+        topics.add(new Topic(R.drawable.fashiondesign, false, "fashiondesign"));
+        topics.add(new Topic(R.drawable.singing, false, "singing"));
+        topics.add(new Topic(R.drawable.modeling, false, "modeling"));
+        topics.add(new Topic(R.drawable.makeup, false, "makeup"));
+        topics.add(new Topic(R.drawable.writing, false, "writing"));
+        topics.add(new Topic(R.drawable.poetry, false, "poetry"));
+        topics.add(new Topic(R.drawable.computermodel, false, "computermodel"));
+
+        Log.i("DiscoveryFragment", "Size of topics after initializing: " + topics.size());
+
 
 
         adapter = new DiscoveryFragmentAdapter(getContext(), topics);
@@ -106,6 +111,7 @@ public class DiscoveryFragment extends Fragment {
             }
         });
     }
+
 
     public interface ButtonSubmitDiscoveryListener {
         void switchFragment();

@@ -4,10 +4,16 @@ public class Topic {
 
     private int img;
     private boolean selected;
+    private String name;
 
-    public Topic(int img, boolean selected) {
+    public Topic(int img, boolean selected, String name) {
         this.img = img;
         this.selected = selected;
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public Boolean getSelected() {
