@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.bhavikateli.collab.CommentActivity;
 import com.bhavikateli.collab.EditProfileActivity;
 import com.bhavikateli.collab.IntroActivity;
+import com.bhavikateli.collab.MapActivity;
+import com.bhavikateli.collab.NearbyPlacesActivity;
 import com.bhavikateli.collab.Post;
 import com.bhavikateli.collab.ProfileFragmentAdapter;
 import com.bhavikateli.collab.R;
@@ -51,6 +53,8 @@ public class ProfileFragment extends Fragment {
     private TextView tvProfileDescription;
     private Button btnDiscoveryComment;
     private  Button btnEditProfile;
+    private Button btnLocation;
+    private Button btnHangoutSpots;
 
 
     public ProfileFragment() {
@@ -90,6 +94,8 @@ public class ProfileFragment extends Fragment {
         rvUserPosts = view.findViewById(R.id.rvUserPosts);
         btnDiscoveryComment = view.findViewById(R.id.btnDiscoveryComment);
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
+        btnLocation = view.findViewById(R.id.btnLocation);
+        btnHangoutSpots = view.findViewById(R.id.btnHangoutSpots);
 
         btnDiscoveryComment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +114,23 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        btnHangoutSpots.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), NearbyPlacesActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btnLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MapActivity.class);
+                intent.putExtra("user", Parcels.wrap(user));
+                startActivity(intent);
+            }
+        });
+
         //set its text
         Log.i(TAG, "this is the username: " + user.getUsername());
         tvUserUsername.setText(user.getUsername());
@@ -122,6 +145,11 @@ public class ProfileFragment extends Fragment {
         if(user != ParseUser.getCurrentUser()){
             btnLogOut.setVisibility(View.INVISIBLE);
             btnDiscoveryComment.setVisibility(View.INVISIBLE);
+            btnEditProfile.setVisibility(View.INVISIBLE);
+            btnHangoutSpots.setVisibility(View.INVISIBLE);
+            btnLocation.setVisibility(View.VISIBLE);
+            btnHangoutSpots.setVisibility(View.INVISIBLE);
+
         }
 
         allPosts = new ArrayList<>();

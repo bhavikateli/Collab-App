@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -22,6 +23,10 @@ import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -34,6 +39,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public static final String TAG = "SignUpActivity";
     public static final int PICK_PHOTO_CODE = 1123;
+    public static final int PLACE_PICKER_REQUEST = 69;
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE_SIGN_UP = 2378;
     EditText etUsernameSignUp;
     EditText etPasswordSignUp;
@@ -41,7 +47,11 @@ public class SignUpActivity extends AppCompatActivity {
     Button btnCaptureImageSignUp;
     Button btnGalleryPictureSignUp;
     Button btnSubmitSignUp;
+    Button btnPickLocationSignUp;
     ImageView ivProfilePreviewSignUp;
+    TextView tvLocationSignUp;
+    double latitudeDouble;
+    double longitudeDouble;
     public String photoFileName = "photo.jpg";
     private File photoFile;
 
@@ -57,6 +67,22 @@ public class SignUpActivity extends AppCompatActivity {
         btnCaptureImageSignUp = findViewById(R.id.btnCaptureImageSignUp);
         btnGalleryPictureSignUp = findViewById(R.id.btnGalleryPictureSignUp);
         ivProfilePreviewSignUp = findViewById(R.id.ivProfilePreviewSignUp);
+        btnPickLocationSignUp = findViewById(R.id.btnPickLocationSignUp);
+        tvLocationSignUp = findViewById(R.id.tvLocationSignUp);
+
+        btnPickLocationSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+                try {
+                    startActivityForResult(builder.build(SignUpActivity.this), PLACE_PICKER_REQUEST);
+                } catch (GooglePlayServicesRepairableException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         btnSubmitSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +91,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String username = etUsernameSignUp.getText().toString();
                 String password = etPasswordSignUp.getText().toString();
                 String profileDescription = etProfileDescriptionSignUp.getText().toString();
-                createUser(username, password, profileDescription);
+                createUser(username, password, profileDescription, latitudeDouble, longitudeDouble);
             }
         });
 
@@ -83,6 +109,8 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     // Trigger gallery selection for a photo
     public void onPickPhoto(View view) {
@@ -178,9 +206,26 @@ public class SignUpActivity extends AppCompatActivity {
             ImageView ivPreview = (ImageView) findViewById(R.id.ivProfilePreviewSignUp);
             ivProfilePreviewSignUp.setImageBitmap(selectedImage);
         }
+
+        else if(requestCode == PLACE_PICKER_REQUEST){
+            if(resultCode == RESULT_OK){
+                Place place = PlacePicker.getPlace(data, this);
+                StringBuilder stringBuilder= new StringBuilder();
+                latitudeDouble = place.getLatLng().latitude;
+                longitudeDouble = place.getLatLng().longitude;
+                String latitude = String.valueOf(place.getLatLng().latitude);
+                String longitude = String.valueOf(place.getLatLng().longitude);
+                stringBuilder.append("Latitude: ");
+                stringBuilder.append(latitude);
+                stringBuilder.append("Longitude: ");
+                stringBuilder.append(longitude);
+                tvLocationSignUp.setText(stringBuilder.toString());
+
+            }
+        }
     }
 
-    private void createUser(String username, String password, String profileDescription) {
+    private void createUser(String username, String password, String profileDescription, double latitudeDouble, double longitudeDouble) {
         // Create the ParseUser
         ParseUser user = new ParseUser();
 
@@ -188,6 +233,8 @@ public class SignUpActivity extends AppCompatActivity {
         user.setUsername(username);
         user.setPassword(password);
         user.put("profileDescription", profileDescription);
+        user.put("longitude", longitudeDouble);
+        user.put("latitude", latitudeDouble);
         ParseFile finalProfilePicture = new ParseFile(photoFile);
         user.put("profilePicture", finalProfilePicture);
         try {

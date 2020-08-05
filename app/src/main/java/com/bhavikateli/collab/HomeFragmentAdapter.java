@@ -52,16 +52,20 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter<HomeFragmentAdapte
 
         TextView tvUsernameHome;
         ImageView ivPostHome;
+        TextView tvPostCaption;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivPostHome = itemView.findViewById(R.id.ivPostHome);
             tvUsernameHome = itemView.findViewById(R.id.tvUsernameHome);
+            tvPostCaption = itemView.findViewById(R.id.tvPostCaption);
         }
         public void bind(final Post post) {
             tvUsernameHome.setText(post.getUser().getUsername());
             ParseFile image = post.getImage();
             Glide.with(context).load(image.getUrl()).into(ivPostHome);
+
+            tvPostCaption.setText(post.getDescription());
 
             tvUsernameHome.setOnClickListener(new View.OnClickListener() {
                 @Override

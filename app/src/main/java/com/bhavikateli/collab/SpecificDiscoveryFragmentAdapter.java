@@ -139,6 +139,7 @@ public class SpecificDiscoveryFragmentAdapter extends RecyclerView.Adapter<Speci
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, MapActivity.class);
+                    intent.putExtra("user", Parcels.wrap(user));
                     context.startActivity(intent);
                 }
             });

@@ -37,7 +37,21 @@
         android:textSize="14sp" />
 
     <EditText
-        android:id="@+id/etPasswordSignUp2"
+        android:id="@+id/etConfirmEmailSignUp"
+        android:layout_width="309dp"
+        android:layout_height="31dp"
+        android:layout_below="@+id/etEmailSignUp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_corner_lightgray"
+        android:ems="10"
+        android:hint="    confirm email"
+        android:inputType="textPersonName"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/etEmailSignUp"
         android:layout_width="309dp"
         android:layout_height="31dp"
         android:layout_below="@+id/etPasswordSignUp"
@@ -51,24 +65,10 @@
         android:textSize="14sp" />
 
     <EditText
-        android:id="@+id/etPasswordSignUp3"
-        android:layout_width="309dp"
-        android:layout_height="31dp"
-        android:layout_below="@+id/etPasswordSignUp2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/rounded_corner_lightgray"
-        android:ems="10"
-        android:hint="    confirm email"
-        android:inputType="textPersonName"
-        android:textSize="14sp" />
-
-    <EditText
         android:id="@+id/etProfileDescriptionSignUp"
         android:layout_width="307dp"
         android:layout_height="65dp"
-        android:layout_below="@+id/etPasswordSignUp3"
+        android:layout_below="@+id/etConfirmEmailSignUp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="18dp"
         android:layout_marginTop="10dp"
@@ -119,10 +119,10 @@
         android:id="@+id/btnSubmitSignUp"
         android:layout_width="141dp"
         android:layout_height="30dp"
-        android:layout_below="@+id/ivProfilePreviewSignUp"
+        android:layout_below="@+id/tvLocationSignUp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="144dp"
-        android:layout_marginTop="106dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/rounded_corner_purple"
         android:text="submit"
         android:textColor="#FFFFFF" />
@@ -138,4 +138,25 @@
         android:layout_marginTop="14dp"
         app:srcCompat="@drawable/collab"
         />
+
+    <Button
+        android:id="@+id/btnPickLocationSignUp"
+        android:layout_width="139dp"
+        android:layout_height="27dp"
+        android:layout_below="@+id/ivProfilePreviewSignUp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/rounded_corner_black"
+        android:text="Pick Location"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/tvLocationSignUp"
+        android:layout_width="235dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnPickLocationSignUp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="88dp" />
+
 </RelativeLayout>
