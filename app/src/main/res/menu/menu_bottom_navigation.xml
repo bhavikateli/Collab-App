@@ -9,12 +9,12 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/action_discovery"
-        android:icon="@drawable/ic_baseline_search_24"
+        android:icon="@android:drawable/ic_menu_compass"
         android:title="Discovery"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_compose"
-        android:icon="@drawable/ic_baseline_camera_alt_24"
+        android:icon="@android:drawable/ic_menu_edit"
         android:title="Compose"
         app:showAsAction="always" />
     <item

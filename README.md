@@ -37,7 +37,6 @@ Original App Design Project - README
 **Optional Nice-to-have Stories**
 
 - [x] [Chat Room] Add additional menu items inside the bottom navigation menu to allow users to communicate with each other.
-    - [ ] Chat room is divided by the different topics in the discovery page.
 - [x] [Nested RecyclerView] There is an additional recyclerView inside the specific discovery page created so that you can see all the users posts inside the initial feed created instead of being delegated to another page.
 - [x] [Pull-to-Refresh] Implement pull to refresh on home timeline.
 - [x] [Viewing other users profiles] If a user clicks on a profile, they can view all the posts they have.
@@ -47,7 +46,8 @@ Original App Design Project - README
 - [x] [Comments]: Can add comments on discovery page to start the first contact with other creators. 
 - [x] [Follow other users]: User (registered) can follow another user to view on Discovery feed
 - [x] [View other profiles]: User can view another user's profile if they click on username in Home Feed
-
+- [x] [ReportBugs Page]: A page meant for users to leave feedback or report any bugs that they are facing.
+- [x] [Test on a real Android Device]: Test it on a real device to make sure the app is working.
 
 
 ## 2. Navigation
