@@ -11,10 +11,9 @@ Original App Design Project - README
 
 ## Overview
 ### Description
-[A social media app which allows creators from different arts to message and connect to work on new projects while also aiding each other to advance in their professions by giving each other advice/introducing them to new connections.]
+A social media app to connect creators from different fields to collaborate on new projects
 
 ### App Evaluation
-[Evaluation of your app across the following attributes]
 - **Category:** Photo & Video / Social
 - **Mobile:** Uses camera and it is mobile first experience.
 - **Story:** Allows users to show their own artwork and collaborate with other artists.
@@ -25,29 +24,24 @@ Original App Design Project - README
 
 ## Product Spec
 
-### 1. User Stories (Required and Optional)
+### 1. User Stories 
 
-**Required Must-have Stories**
-
-- [x] User can create a new profile/Log into existing profile using the Parse Database. 
-- [x] User (registered) can create new posts for collab using camera/gallery.
-- [x] [Bottom Navigation]: Four fragments with home feed, personal profile, compose picture and discovery feed.
-- [x] [Discovery Feed]: Will create a user-specific feed to show them new artists that they are interested in by selecting a list of topics. 
-
-**Optional Nice-to-have Stories**
-
-- [x] [Chat Room] Add additional menu items inside the bottom navigation menu to allow users to communicate with each other.
-- [x] [Nested RecyclerView] There is an additional recyclerView inside the specific discovery page created so that you can see all the users posts inside the initial feed created instead of being delegated to another page.
-- [x] [Pull-to-Refresh] Implement pull to refresh on home timeline.
-- [x] [Viewing other users profiles] If a user clicks on a profile, they can view all the posts they have.
-- [x] [Home Feed]: Will show friends that you have added in the app and the work they have recently created.
-- [x] [Implement PlacePicker on GoogleMap]:Initial sign up consists of an [optional] choice to pick their location. User can see another user's location when viewing their profile using the Google SDK.
-- [x] [Find nearby places on GoogleMap]:User can see different hangout spots around their current location to plan a collab with another user. 
-- [x] [Comments]: Can add comments on discovery page to start the first contact with other creators. 
-- [x] [Follow other users]: User (registered) can follow another user to view on Discovery feed
-- [x] [View other profiles]: User can view another user's profile if they click on username in Home Feed
-- [x] [ReportBugs Page]: A page meant for users to leave feedback or report any bugs that they are facing.
-- [x] [Test on a real Android Device]: Test it on a real device to make sure the app is working.
+- User can create a new profile/Log into existing profile using the Parse Database. 
+- User (registered) can create new posts for collab using camera/gallery.
+- [Bottom Navigation]: Four fragments with home feed, personal profile, compose picture and discovery feed.
+- [Discovery Feed]: Will create a user-specific feed to show them new artists that they are interested in by selecting a list of topics. 
+- [Chat Room] Add additional menu items inside the bottom navigation menu to allow users to communicate with each other.
+- [Nested RecyclerView] There is an additional recyclerView inside the specific discovery page created so that you can see all the users posts inside the initial feed created instead of being delegated to another page.
+- [Pull-to-Refresh] Implement pull to refresh on home timeline.
+- [Viewing other users profiles] If a user clicks on a profile, they can view all the posts they have.
+- [Home Feed]: Will show friends that you have added in the app and the work they have recently created.
+- [Implement PlacePicker on GoogleMap]:Initial sign up consists of an [optional] choice to pick their location. User can see another user's location when viewing their profile using the Google SDK.
+- [Find nearby places on GoogleMap]:User can see different hangout spots around their current location to plan a collab with another user. 
+- [Comments]: Can add comments on discovery page to start the first contact with other creators. 
+- [Follow other users]: User (registered) can follow another user to view on Discovery feed
+- [View other profiles]: User can view another user's profile if they click on username in Home Feed
+- [ReportBugs Page]: A page meant for users to leave feedback or report any bugs that they are facing.
+- [Test on a real Android Device]: Test it on a real device to make sure the app is working.
 
 
 ## 2. Navigation
