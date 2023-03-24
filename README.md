@@ -13,6 +13,10 @@ Original App Design Project - README
 ### Description
 A social media app to connect creators from different fields to collaborate on new projects
 
+
+### Demo
+<img src='gifs/week4.gif' title='Video Walkthrough' width='10' alt='Video Walkthrough' />
+
 ### App Evaluation
 - **Category:** Photo & Video / Social
 - **Mobile:** Uses camera and it is mobile first experience.
@@ -83,7 +87,6 @@ A social media app to connect creators from different fields to collaborate on n
 ### NAVIGATION WITH STRETCH GOALS
 <img src='pictures/stretchWireframe.png' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-<img src='gifs/week4.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
 
