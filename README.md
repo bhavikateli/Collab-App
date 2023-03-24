@@ -78,11 +78,13 @@ A social media app to connect creators from different fields to collaborate on n
   => Common Chat Room
   
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
 <img src='pictures/wireframe.jpg' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 ### NAVIGATION WITH STRETCH GOALS
 <img src='pictures/stretchWireframe.png' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+<img src='gifs/week4.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 
 
 
