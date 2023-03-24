@@ -15,7 +15,7 @@ A social media app to connect creators from different fields to collaborate on n
 
 
 ### Demo
-<img src='gifs/week4.gif' title='Video Walkthrough' width='10' alt='Video Walkthrough' />
+<img src='gifs/week4.gif' title='Video Walkthrough' width='78' alt='Video Walkthrough' />
 
 ### App Evaluation
 - **Category:** Photo & Video / Social
